@@ -20,7 +20,18 @@ pool.on('error', (err) => {
 // GET
 
 todoRouter.get('/', (req,res) => {
-      
+      console.log('in GET /todo');
+
+      let queryText = `SELECT * FROM "todo" ORDER BY name`;
+
+      pool.query(queryText)
+      .then((dbRes) => {
+            res.send(dbRes.rows);
+      })
+      .catch((err) => {
+            console.log('error in GET /todo', err);
+            res.sendStatus(500);
+      })
 });
 
 // POST

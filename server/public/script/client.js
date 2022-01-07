@@ -1,2 +1,1 @@
-
-import swal from 'sweetalert';
+console.log('js');
