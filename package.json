@@ -1,19 +1,29 @@
 {
   "name": "sql_to_do_list",
   "version": "1.0.0",
-  "description": "",
+  "description": "[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server/server.js"
   },
-  "author": "@devjana",
-  "license": "ISC",
-
+  "author": "@jamespetran",
   "dependencies": {
     "body-parser": "^1.19.1",
     "express": "^4.17.2",
     "nodemon": "^2.0.15",
-    "pg": "^8.7.1"
-  }
+    "pg": "^8.7.1",
+    "sweetalert": "^2.1.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamespetran/sql-to-do-list.git"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamespetran/sql-to-do-list/issues"
+  },
+  "homepage": "https://github.com/jamespetran/sql-to-do-list#readme"
 }

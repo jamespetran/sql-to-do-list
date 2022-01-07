@@ -5,10 +5,33 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script src="./vendors/jquery.js"></script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       <script src="./script/client.js"></script>
       <title>SQL To Do List</title>
 </head>
 <body>
-      <h1>TEST TEXT PLEASE IGNORE</h1>
+      <div class="notes">
+            <h1>TEST TEXT PLEASE IGNORE</h1>
+
+            <br>1. create task 
+            <br>2. store task inside sql
+            <br>3. refresh dom
+            <br>4. each task needs to have option of "complete" (boolean?)
+            <br>5. when a task is complete it needs to turn from gray to green or fade out or be obvious that it's done
+            <br>6. completeness of task needs to be stored in database
+            <br>7. delete task must use db
+            <br>
+            <br>GET   /todo   3.
+            <br>PUSH  /todo   1.,2.
+            <br>PUT   /todo   4.,5.,6.
+            <br>DELETE/todo   7.
+            <br>
+            <br> things the db needs:
+            <br> id serial primary key
+            <br> taskname varchar(500) not null
+            <br> isComplete boolean
+            <br> timeCompleted date
+            <br>
+      </div>
 </body>
 </html>
