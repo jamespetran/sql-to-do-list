@@ -22,7 +22,10 @@ pool.on('error', (err) => {
 todoRouter.get('/', (req,res) => {
       console.log('in GET /todo');
 
-      let queryText = `SELECT * FROM "todo" ORDER BY name`;
+      let queryText = `
+      SELECT id,taskname, isDone, to_char(whenComplete, "Mon FMDDth, YYYY") AS whenComplete 
+      FROM "todo" 
+      ORDER BY taskname`;
 
       pool.query(queryText)
       .then((dbRes) => {

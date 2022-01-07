@@ -17,12 +17,16 @@ function onReady() {
 function todoGet() {
       console.log('in GET');
       
-      let result = {
-            taskname: 'example task',
-            isComplete: false,
-            timeCompleted: null,
-      }
-      render(result);
+      $.ajax({
+            method: 'GET',
+            url: '/todo',
+      }).then((res) => {
+            console.log(res);
+            render(res);
+      }).catch((err) => {
+            console.log('error in GET /todo', err);
+      })
+
 }
 
 // POST 
@@ -44,8 +48,27 @@ function todoDelete() {
 
 // RENDER TO DOM 
 
-function render(data) {
+function render(response) {
       console.log('in render');
+      console.log(response);
+      for (const task of response) {
+            let isDone = '';
+            let time = '';
+
+            if (task.isDone) {
+                  isDone = 'Complete!';
+                  time = task.whenComplete;
+            }
+
+            $('#taskTable').append(`
+            <tr data-id="${task.id}">
+                  <td data-name="${task.taskname}"> ${task.taskname} </td>
+                  <td data-bool="${task.isDone}"> ${isDone} </td>
+                  <td data-timeComplete="${task.whenComplete}"> ${time} </td>
+            </tr>
+            `);
+
+      }
 
 
 }
