@@ -52,19 +52,23 @@ function render(response) {
       console.log('in render');
       console.log(response);
       for (const task of response) {
-            let isDone = '';
-            let time = '';
+            let isDone, time, trClass;
 
             if (task.isDone) {
                   isDone = 'Complete!';
                   time = task.whenComplete;
+                  trClass = 'table-success';
+            } else {
+                  isDone = '';
+                  time = '';
             }
+            
 
             $('#taskTable').append(`
-            <tr data-id="${task.id}">
-                  <td data-name="${task.taskname}"> ${task.taskname} </td>
-                  <td data-bool="${task.isDone}"> ${isDone} </td>
-                  <td data-timeComplete="${task.whenComplete}"> ${time} </td>
+            <tr class="tr-stripe ${trClass} " data-id="${task.id}">
+                  <td class="td" data-name="${task.taskname}"> ${task.taskname} </td>
+                  <td class="td" data-bool="${task.isDone}"> ${isDone} </td>
+                  <td class="td" data-timeComplete="${task.whenComplete}"> ${time} </td>
             </tr>
             `);
 

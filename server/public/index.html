@@ -7,6 +7,9 @@
       <script src="./vendors/jquery.js"></script>
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       <script src="./script/client.js"></script>
+
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" href="./style/style.css">
       <title>SQL To Do List</title>
 </head>
 <body>
@@ -34,14 +37,14 @@
             <br>
       </div>
       <div>
-            <table>
-                  <thead>
+            <table class="table table-bordered table-striped table-hover">
+                  <thead class="thead">
                         <th>Task</th>
                         <th>Complete?</th>
                         <th>Time completed</th>
                   </thead>
-                  <tbody id="taskTable">
-                        
+                  <tbody class="tbody" id="taskTable">
+
                   </tbody>
             </table>
       </div>
