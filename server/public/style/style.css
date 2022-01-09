@@ -1,0 +1,23 @@
+.button-area {
+      text-align: center;
+}
+
+#table-title {
+      text-align: center;
+}
+
+/* https://stackoverflow.com/questions/31184000/making-a-bootstrap-table-column-fit-to-content */
+.table td.fit {
+      white-space: nowrap;
+      width: 1%;
+} 
+.table {
+      width: 90%;
+}
+.table {
+      margin: 1rem auto;
+}
+td.container{
+      display: flex;
+      justify-content: space-between;
+}
