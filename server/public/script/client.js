@@ -7,6 +7,8 @@ function onReady() {
       // event handlers
       $('#new-task').on('click', todoPost);
       $('#taskTable').on('change', '.isNotDone', todoPut);
+      $('#taskTable').on('click', '.deleteBtn', todoDelete);
+
       // GET & render init
       todoGet();
 }; // end onReady
@@ -47,7 +49,7 @@ function todoPost() {
 }
 // PUT 
 function todoPut() {
-      let id = $(this).parent().parent().parent().data('id');
+      let id = $(this).parents('tr').data('id');
       console.log('in PUT set complete for', id);
       $.ajax({
             method: 'PUT',
@@ -63,8 +65,30 @@ function todoPut() {
 
 // DELETE 
 function todoDelete() {
-      console.log('in DELETE');
+      let id = $(this).parents('tr').data('id');
 
+      console.log('in DELETE', id);
+      Swal.fire({
+            title: 'Delete item?',
+            text: 'Really delete this to-do list item?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Delete'
+      }).then((result) => {
+            if (result.isConfirmed) {
+                  $.ajax({
+                        method: 'DELETE',
+                        url: `/todo/delete/${id}`,
+                  }).then((res) => {
+                        console.log('delete successful for task', id);
+                        todoGet();
+                  }).catch((err) => {
+                        console.log(`error:`,err);
+                  })
+            };
+      });
 } // end todoDelete
 
 // RENDER TO DOM 

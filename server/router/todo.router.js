@@ -84,7 +84,7 @@ todoRouter.put('/edit/:id', (req, res) => {
       
       // if (opposite(passes test)) === if (fails test):
       if (!testID(queryParams)) {
-            console.log('Data validation Failed ~🤢~');
+            console.log('Data validation Failed for ID ~🤢~');
             res.sendStatus(400); // status: data validation fail
             return;
       };
@@ -115,6 +115,29 @@ function testID(queryParams) {
 
 
 // DELETE
+todoRouter.delete('/delete/:id', (req,res) => {
+      console.log('in DELETE todo', req.params.id);
+      let queryText = `
+            DELETE FROM "todo"
+            WHERE id = $1`;
+      let queryParams = [req.params.id]
 
+      // if (opposite(passes test)) === if (fails test):
+      if (!testID(queryParams)) {
+            console.log('Data validation Failed for ID ~🤢~');
+            res.sendStatus(400); // status: data validation fail
+            return;
+      };
+      pool.query(queryText, queryParams)
+            .then( () => {
+                  console.log(req.params.id, 'deleted')
+                  res.sendStatus(200);
+            }).catch((err) => {
+                  console.log('failed to delete', err);
+                  res.sendStatus(500);
+            });
+
+      
+})
 
 module.exports = todoRouter;
