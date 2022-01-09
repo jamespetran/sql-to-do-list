@@ -1,7 +1,11 @@
+// vars
+
 const express = require('express');
 const todoRouter = express.Router();
 const pg = require('pg');
+const testParams = require('../module/testParams')
 
+// DB Connection
 const config = {
       database: "todo_sql_jan21",
       host: "localhost",
@@ -38,6 +42,25 @@ todoRouter.get('/', (req,res) => {
 });
 
 // POST
+
+todoRouter.post('/', (req,res) => {
+      let newTask = req.body;
+      console.log('adding task', newTask);
+
+      let queryText = `
+            INSERT INTO "todo"
+                  (taskname, "isDone")
+            VALUES ($1, false)
+      `;
+
+      let queryParams = [ newTask.name ]
+
+      if (!testParams(queryParams) ) {
+            console.log('Data validation Failed ~🤢~');
+            res.sendStatus(400);
+            return;
+      }
+});
 
 // PUT
 
