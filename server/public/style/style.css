@@ -11,3 +11,13 @@
       white-space: nowrap;
       width: 1%;
 } 
+.table {
+      width: 90%;
+}
+.table {
+      margin: 1rem auto;
+}
+td.container{
+      display: flex;
+      justify-content: space-between;
+}

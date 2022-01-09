@@ -47,7 +47,7 @@ function todoPost() {
 }
 // PUT 
 function todoPut() {
-      let id = $(this).parent().parent().data('id');
+      let id = $(this).parent().parent().parent().data('id');
       console.log('in PUT set complete for', id);
       $.ajax({
             method: 'PUT',
@@ -74,26 +74,31 @@ function render(response) {
       $('#taskTable').empty();
       console.log(response);
       for (const task of response) {
-            let isDone, time, trClass, rowspan;
+            let checkbox, time, green, colspan;
             if (task.isDone) {
-                  isDone = `
+                  checkbox = `
                   <input type="checkbox" 
                   class="checkbox isDone" 
                   onclick="this.checked=!this.checked;" 
                   checked>`;
                   time = `Completed: ${task.whenComplete}`;
-                  trClass = ' table-success';
-                  rowspan=2;
+                  green = ' table-success';
+                  colspan = 1;
             } else {
-                  isDone = `<input type="checkbox" class="checkbox isNotDone">`;
+                  checkbox = `<input type="checkbox" class="checkbox isNotDone">`;
                   time = '';
-                  trClass = '';
-                  rowspan=1;
+                  green = '';
+                  colspan = 2;
             }
             $('#taskTable').append(`
-            <tr class="tr-stripe${trClass} " data-id="${task.id}">
-                  <td class="td taskname" data-name="${task.taskname}"> ${isDone} ${task.taskname} </td>
-                  <td class="td complete fit" data-timeComplete="${task.whenComplete}"> ${time} </td>
+            <tr class="tr-stripe${green}" data-id="${task.id}">
+                  <td class="td taskname container" colspan="${colspan}" data-name="${task.taskname}"> 
+                        <span class="left-span">${checkbox} ${task.taskname}</span> 
+                        <span class="right-span">
+                              ${time}
+                              <button class="deleteBtn">Delete Task</button>
+                        </span>
+                  </td>
             </tr>
             `);
       }

@@ -26,7 +26,7 @@ todoRouter.get('/', (req, res) => {
       console.log('in GET /todo');
 
       let queryText = `
-      SELECT id, taskname, "isDone", TO_CHAR("whenComplete", 'HH12:MI AM, Mon fmDDth YYYY') AS "whenComplete" 
+      SELECT id, taskname, "isDone", TO_CHAR("whenComplete", 'Mon fmDDth YYYY') AS "whenComplete" 
       FROM todo
       ORDER BY "whenComplete" DESC`;
 
@@ -73,12 +73,12 @@ todoRouter.post('/', (req, res) => {
 
 // PUT
 todoRouter.put('/edit/:id', (req, res) => {
-      console.log(`in PUT /todo/${req.params.id}`);
+      console.log(`in PUT /todo/edit/${req.params.id}`);
       let queryText = `
             UPDATE "todo"
-            SET   "isDone" = TRUE
-                  "whenComplete" = LOCALTIMESTAMP(0)
-            WHERE id = $1
+            SET   "isDone" = true,
+                  "whenComplete" = NOW()
+            WHERE id = $1;
       `
       let queryParams = [req.params.id]
       
@@ -94,7 +94,7 @@ todoRouter.put('/edit/:id', (req, res) => {
                   res.sendStatus(201) //status: request successful
             })
             .catch((err) => {
-                  console.log(`Error in PUT /todo/edit/${req.params.id}`)
+                  console.log(`Error in PUT /todo/edit/${req.params.id}`,err)
                   res.sendStatus(500); // status: server error
             });
 
