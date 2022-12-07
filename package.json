@@ -9,8 +9,8 @@
   },
   "author": "@jamespetran",
   "dependencies": {
-    "body-parser": "^1.19.1",
-    "express": "^4.17.2",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
     "nodemon": "^2.0.15",
     "pg": "^8.7.1",
     "sweetalert": "^2.1.2"
